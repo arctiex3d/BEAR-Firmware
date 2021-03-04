@@ -1,4 +1,4 @@
-# 3DXFAB Firmware BEAR MK3S
+# 3DXFAB BEAR MK3S Firmware
 
 This repository contains the source code and the development versions of the firmware running on the [BEAR MK3S](https://3dxfab.com/) BEAR line of printers.
 
