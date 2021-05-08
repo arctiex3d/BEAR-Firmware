@@ -16,12 +16,12 @@ extern uint16_t nPrinterType;
 extern PGM_P sPrinterName;
 
 // Firmware version
-#define FW_VERSION "3.9.3"
-#define FW_COMMIT_NR 3556
+#define FW_VERSION "3.10.0"
+#define FW_COMMIT_NR 4481
 // FW_VERSION_UNKNOWN means this is an unofficial build.
 // The firmware should only be checked into github with this symbol.
 #define FW_DEV_VERSION FW_VERSION_UNKNOWN
-#define FW_REPOSITORY "Unknown"
+#define FW_REPOSITORY "GitHub"
 #define FW_VERSION_FULL FW_VERSION "-" STR(FW_COMMIT_NR)
 
 // G-code language level
@@ -70,7 +70,7 @@ extern PGM_P sPrinterName;
 //#define STRING_VERSION "1.0.2"
 
 #define STRING_VERSION_CONFIG_H __DATE__ " " __TIME__ // build date and time
-#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(3DXFAB, BEAR Firmware 3.10.0)" // Who made the changes.
 
 // SERIAL_PORT selects which serial port should be used for communication with the host.
 // This allows the connection of wireless adapters (for instance) to non-default port pins.
@@ -551,9 +551,10 @@ enum CalibrationStatus
 
 // Try to maintain a minimum distance from the bed even when Z is
 // unknown when doing the following operations
-#define MIN_Z_FOR_LOAD    50
-#define MIN_Z_FOR_UNLOAD  50
-#define MIN_Z_FOR_PREHEAT 10
+#define MIN_Z_FOR_LOAD    50 // lcd filament loading or autoload
+#define MIN_Z_FOR_UNLOAD  50 // lcd filament unloading
+#define MIN_Z_FOR_SWAP    27 // filament change (including M600)
+#define MIN_Z_FOR_PREHEAT 10 // lcd preheat
 
 #include "Configuration_adv.h"
 #include "thermistortables.h"

@@ -16,7 +16,7 @@
 #define NOZZLE_TYPE "V6_Ti_Full"
 
 // Developer flag
-#define DEVELOPER
+//#define DEVELOPER
 
 // Printer name
 #define CUSTOM_MENDEL_NAME "3DXFAB BEAR MK3S"
@@ -29,16 +29,13 @@
 // PSU
 #define PSU_Delta                                 // uncomment if DeltaElectronics PSU installed
 
+
 // Uncomment the below for the E3D PT100 temperature sensor (with or without PT100 Amplifier)
 //#define E3D_PT100_EXTRUDER_WITH_AMP
 //#define E3D_PT100_EXTRUDER_NO_AMP
 //#define E3D_PT100_BED_WITH_AMP
 //#define E3D_PT100_BED_NO_AMP
 
-// Extruder
-#define BONDTECH_MK3S
-//#define BONDTECH_MOSQUITO
-//#define BONDTECH_MOSQUITO_MAGNUM
 
 /*------------------------------------
  AXIS SETTINGS
@@ -46,7 +43,7 @@
 
 // Steps per unit {X,Y,Z,E}
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,140}
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,415}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,382}
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,560}
 
 // Endstop inverting
@@ -72,7 +69,7 @@
 #define X_MIN_POS 0
 #define Y_MAX_POS 212.5
 #define Y_MIN_POS -4 //orig -4
-#define Z_MAX_POS 310
+#define Z_MAX_POS 210
 #define Z_MIN_POS 0.15
 
 // Canceled home position
@@ -80,7 +77,7 @@
 #define Y_CANCEL_POS 190
 
 //Pause print position
-#define X_PAUSE_POS 50
+#define X_PAUSE_POS 2
 #define Y_PAUSE_POS 190
 #define Z_PAUSE_LIFT 20
 
@@ -104,8 +101,9 @@
 #define DEFAULT_MAX_ACCELERATION_SILENT     {960, 960, 200, 5000}    // (mm/sec^2) max acceleration (M201), silent mode
 
 
-#define DEFAULT_ACCELERATION          1250   // X, Y, Z and E max acceleration in mm/s^2 for printing moves (M204S)
-#define DEFAULT_RETRACT_ACCELERATION  1250   // X, Y, Z and E max acceleration in mm/s^2 for retracts (M204T)
+#define DEFAULT_ACCELERATION          1250   // X, Y, Z and E max acceleration in mm/s^2 for printing moves (M204P)
+#define DEFAULT_RETRACT_ACCELERATION  1250   // X, Y, Z and E max acceleration in mm/s^2 for retracts (M204R)
+#define DEFAULT_TRAVEL_ACCELERATION   1250   // X, Y, Z and E max acceleration in mm/s^2 for travels (M204T)
 
 #define MANUAL_FEEDRATE {2700, 2700, 1000, 100}   // set the speeds for manual moves (mm/min)
 
@@ -124,7 +122,7 @@
 
 //Crash detection
 #define CRASHDET_TIMER 45 //seconds
-#define CRASHDET_COUNTER_MAX 3
+#define CRASHDET_COUNTER_MAX 3 
 
 // New XYZ calibration
 #define NEW_XYZCAL
@@ -136,7 +134,7 @@
 #define UVLO_SUPPORT
 
 // Fan check
-#define FANCHECK
+//#define FANCHECK
 
 // Safety timer
 #define SAFETYTIMER
@@ -147,7 +145,7 @@
 #define FILAMENT_SENSOR
 #define IR_SENSOR
 
-// Backlash -
+// Backlash - 
 //#define BACKLASH_X
 //#define BACKLASH_Y
 
@@ -163,22 +161,22 @@
 
 //#define DEBUG_BUILD
 //#define DEBUG_SEC_LANG   //secondary language debug output at startup
-//#define DEBUG_W25X20CL   //debug external spi flash
+//#define DEBUG_XFLASH   //debug external spi flash
 #ifdef DEBUG_BUILD
 //#define _NO_ASM
 #define DEBUG_DCODES //D codes
 #define DEBUG_STACK_MONITOR        //Stack monitor in stepper ISR
 //#define DEBUG_FSENSOR_LOG          //Reports fsensor status to serial
 //#define DEBUG_CRASHDET_COUNTERS  //Display crash-detection counters on LCD
-//#define DEBUG_RESUME_PRINT       //Resume/save print debug enable
-//#define DEBUG_UVLO_AUTOMATIC_RECOVER // Power panic automatic recovery debug output
+//#define DEBUG_RESUME_PRINT       //Resume/save print debug enable 
+//#define DEBUG_UVLO_AUTOMATIC_RECOVER // Power panic automatic recovery debug output 
 //#define DEBUG_DISABLE_XMINLIMIT  //x min limit ignored
 //#define DEBUG_DISABLE_XMAXLIMIT  //x max limit ignored
 //#define DEBUG_DISABLE_YMINLIMIT  //y min limit ignored
 //#define DEBUG_DISABLE_YMAXLIMIT  //y max limit ignored
 //#define DEBUG_DISABLE_ZMINLIMIT  //z min limit ignored
 //#define DEBUG_DISABLE_ZMAXLIMIT  //z max limit ignored
-#define DEBUG_DISABLE_STARTMSGS //no startup messages
+#define DEBUG_DISABLE_STARTMSGS //no startup messages 
 //#define DEBUG_DISABLE_MINTEMP   //mintemp error ignored
 //#define DEBUG_DISABLE_SWLIMITS  //sw limits ignored
 //#define DEBUG_DISABLE_LCD_STATUS_LINE  //empty four lcd line
@@ -238,6 +236,11 @@
 #define TMC2130_PWM_AUTO_E  1         // PWMCONF
 #define TMC2130_PWM_FREQ_E  2         // PWMCONF
 
+// experimental setting for E-motor cooler operation
+#define TMC2130_PWM_GRAD_Ecool  84        // PWMCONF 730mA @ 375mm/min  970mA phase peak at feedrate 900mm/min
+#define TMC2130_PWM_AMPL_Ecool  43        // PWMCONF 500mA phase peak at feedrate 10 mm/min
+#define TMC2130_PWM_AUTO_Ecool  0         // PWMCONF
+
 #define TMC2130_TOFF_XYZ    3         // CHOPCONF // fchop = 27.778kHz
 #define TMC2130_TOFF_E      3         // CHOPCONF // fchop = 27.778kHz
 //#define TMC2130_TOFF_E      4         // CHOPCONF // fchop = 21.429kHz
@@ -251,6 +254,7 @@
 #define TMC2130_PWM_CLK   (2 * TMC2130_FCLK / TMC2130_PWM_DIV) // PWM frequency (23.4kHz, 35.1kHz, 46.9kHz, 58.5kHz for 12MHz fclk)
 
 #define TMC2130_TPWMTHRS  0         // TPWMTHRS - Sets the switching speed threshold based on TSTEP from stealthChop to spreadCycle mode
+#define TMC2130_TPWMTHRS_E 403      // Switch extruder from StealthChop to SpreadCycle at around 900mm/min
 #define TMC2130_THIGH     0         // THIGH - unused
 
 //#define TMC2130_TCOOLTHRS_X 450       // TCOOLTHRS - coolstep treshold
@@ -268,12 +272,13 @@
 #define TMC2130_SG_THRS_HOME {3, 3, TMC2130_SG_THRS_Z, TMC2130_SG_THRS_E}
 
 //new settings is possible for vsense = 1, running current value > 31 set vsense to zero and shift both currents by 1 bit right (Z axis only)
-#define TMC2130_CURRENTS_H {18, 22, 40, 30}  // default holding currents for all axes
-#define TMC2130_CURRENTS_R {18, 22, 40, 30}  // default running currents for all axes
+#define TMC2130_CURRENTS_H {18, 22, 38, 30}  // default holding currents for all axes
+#define TMC2130_CURRENTS_FARM 36             // E 805 mA peak for ECool/farm mode
+#define TMC2130_CURRENTS_R {18, 22, 38, 30}  // default running currents for all axes
 #define TMC2130_CURRENTS_R_HOME {8, 10, 25, 18}  // homing running currents for all axes
-// #define TMC2130_UNLOAD_CURRENT_R 12			 // lower current for M600 to protect filament sensor - Unused
 
 #define TMC2130_STEALTH_Z
+#define TMC2130_DEDGE_STEPPING
 
 //#define TMC2130_SERVICE_CODES_M910_M918
 
@@ -299,8 +304,9 @@
 #if BED_MINTEMP_DELAY>USHRT_MAX
 #error "Check maximal allowed value @ ShortTimer (see BED_MINTEMP_DELAY definition)"
 #endif
-#define DETECT_SUPERPINDA
-#define PINDA_MINTEMP BED_MINTEMP
+#define SUPERPINDA_SUPPORT
+#define PINDA_MINTEMP 10
+//#define PINDA_TEMP_COMP //Used to enable SuperPINDA toggle menu/function
 #define AMBIENT_MINTEMP -30
 
 // Maxtemps
@@ -370,12 +376,12 @@
 #define FILAMENTCHANGE_FINALRETRACT -95
 
 #define FILAMENTCHANGE_FIRSTFEED 80 //E distance in mm for fast filament loading sequence used used in filament change (M600)
-#define FILAMENTCHANGE_FINALFEED 25 //E distance in mm for slow filament loading sequence used used in filament change (M600) and filament load (M701)
+#define FILAMENTCHANGE_FINALFEED 25 //E distance in mm for slow filament loading sequence used used in filament change (M600) and filament load (M701) 
 #define FILAMENTCHANGE_RECFEED 5
 
 #define FILAMENTCHANGE_XYFEED 50
 #define FILAMENTCHANGE_EFEED_FIRST 20 // feedrate in mm/s for fast filament loading sequence used in filament change (M600)
-#define FILAMENTCHANGE_EFEED_FINAL 3.3f // feedrate in mm/s for slow filament loading sequence used in filament change (M600) and filament load (M701)
+#define FILAMENTCHANGE_EFEED_FINAL 3.3f // feedrate in mm/s for slow filament loading sequence used in filament change (M600) and filament load (M701) 
 //#define FILAMENTCHANGE_RFEED 400
 #define FILAMENTCHANGE_RFEED 7000 / 60
 #define FILAMENTCHANGE_EXFEED 2
@@ -501,8 +507,11 @@
 #define FARM_PREHEAT_HOTEND_TEMP 250
 #define FARM_PREHEAT_HPB_TEMP 80
 
-#define PLA_PREHEAT_HOTEND_TEMP 215
+#define PLA_PREHEAT_HOTEND_TEMP 210
 #define PLA_PREHEAT_HPB_TEMP 60
+
+#define PVB_PREHEAT_HOTEND_TEMP 215
+#define PVB_PREHEAT_HPB_TEMP 75
 
 #define ASA_PREHEAT_HOTEND_TEMP 235
 #define ASA_PREHEAT_HPB_TEMP 105
@@ -637,7 +646,7 @@
 // "dropsegments" steps long. All the above rules still need to apply.
 #define UVLO_TINY_Z_AXIS_SHIFT 0.16
 // If power panic occured, and the current temperature is higher then target temperature before interrupt minus this offset, print will be recovered automatically.
-#define AUTOMATIC_UVLO_BED_TEMP_OFFSET 5
+#define AUTOMATIC_UVLO_BED_TEMP_OFFSET 5 
 
 #define HEATBED_V2
 
