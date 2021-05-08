@@ -27,7 +27,7 @@ The firmware for the BEAR MK3S printers is proudly based on [Marlin 1.0.x](https
 1. Clone this repository and checkout the correct branch for your desired release version.
 
 1. Set your printer model. 
-   - For MK3 --> skip to step 3. 
+   - For MK3S --> skip to step 3. 
    - If you have a different printer model, follow step [2.b](#2b) from Windows build
 1. Install GNU AWK  `sudo apt-get install gawk`  
 If you use mawk instead of gawk you get strange errors when multi language support is generated like:  
