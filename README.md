@@ -1,8 +1,8 @@
 # BEAR Firmware 
 
-This repository contains the source code and the development versions of the firmware running on the [3DXFAB BEAR MK3S](https://3dxfab.com/) BEAR line of printers.
+This repository contains the source code and the development versions of the firmware running on the [BEAR MK3S](https://arctiex3d.com/) BEAR line of printers.
 
-The latest official builds can be downloaded from [3DXFAB Drivers](https://www.3dxfab.com/support/). Pre-built development releases are also [available here](https://github.com/3DXFAB/3DXFAB-Firmware/releases).
+The latest official builds can be downloaded from [ARCTIEX Drivers](https://www.arctiex3d.com/support/). Pre-built development releases are also [available here](https://github.com/ARCTIEX/ARCTIEX-Firmware/releases).
 
 The firmware for the BEAR MK3S printers is proudly based on [Marlin 1.0.x](https://github.com/MarlinFirmware/Marlin/) by Scott Lahteine (@thinkyhead) et al. and is distributed under the terms of the [GNU GPL 3 license](LICENSE).
 
